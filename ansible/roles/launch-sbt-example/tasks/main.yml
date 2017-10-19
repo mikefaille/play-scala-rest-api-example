@@ -3,7 +3,7 @@
     name: sbt-example
     recreate: yes
     image: mikefaille/sbt-example
-    state: present
+    state: started
     restart_policy: on-failure
     pull: true
     ports:
