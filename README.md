@@ -1,6 +1,8 @@
 # Play REST API
 
-This is the example project for [Making a REST API in Play](http://developer.lightbend.com/guides/play-rest-api/index.html).
+My quick and dirty CI demo.
+
+~~This is the example project for [Making a REST API in Play](http://developer.lightbend.com/guides/play-rest-api/index.html).~~
 
 ## Appendix
 
@@ -14,7 +16,7 @@ Once you have sbt installed, the following at the command prompt will start up P
 sbt run
 ```
 
-Play will start up on the HTTP port at http://localhost:9000/.   You don't need to deploy or reload anything -- changing any source code while the server is running will automatically recompile and hot-reload the application on the next HTTP request. 
+Play will start up on the HTTP port at http://localhost:9000/.   You don't need to deploy or reload anything -- changing any source code while the server is running will automatically recompile and hot-reload the application on the next HTTP request.
 
 ### Usage
 
