@@ -1,0 +1,9 @@
+- name: docker - launch sbt-example
+  docker_container:
+    name: sbt-example
+    recreate: yes
+    image: mikefaille/sbt-example
+    state: present
+    pull: always
+    ports:
+    - "8080:9000"
