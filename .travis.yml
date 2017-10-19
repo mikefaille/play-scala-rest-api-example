@@ -6,6 +6,10 @@ services:
 
 language: scala
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
 jobs:
   include:
     - stage: docker - build test image
@@ -16,8 +20,8 @@ jobs:
     - stage: docker - build release image
       script:
       - docker build -t sbt-example .
-      - docker images
       - docker tag sbt-example $DOCKER_USERNAME/sbt-example
+      - docker images
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
