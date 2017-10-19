@@ -2,8 +2,9 @@
   become: yes
   vars:
     pip_install_packages:
-      - name: docker
+      - name: docker-py
 
   roles:
     - geerlingguy.docker
+    - geerlingguy.pip
     - launch-sbt-example
