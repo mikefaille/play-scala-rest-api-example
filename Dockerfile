@@ -8,9 +8,7 @@ RUN cd /tmp/play-scala-rest-api-example && \
 
 ### MULTI-STEP BUILD ###
 FROM openjdk:8u141-jre-slim
-COPY --from=sbt-example-package \
-     /tmp/play-scala-rest-api-example/target/universal/play-scala-rest-api-example-1.0-SNAPSHOT.zip \
-     /srv/
+COPY --from=sbt-example-package  /tmp/play-scala-rest-api-example/target/universal/play-scala-rest-api-example-1.0-SNAPSHOT.zip  /srv/
 
 RUN cd /srv && \
     unzip play-scala-rest-api-example-1.0-SNAPSHOT.zip && \
