@@ -128,16 +128,15 @@ resource "aws_instance" "example" {
 
   provisioner "remote-exec" {
     inline = [
-
       "sudo apt update",
       "sudo apt install -y ansible git",
       "sudo ansible-galaxy install geerlingguy.docker geerlingguy.pip",
       "sudo git init ansible-playbook",
-      "cd ansible-playbook && sudo git remote add origin https://github.com/mikefaille/play-scala-rest-api-example",
-      "cd ansible-playbook && sudo git config core.sparsecheckout true",
-      "cd ansible-playbook && echo 'ansible/*' | sudo tee .git/info/sparse-checkout",
-      "cd ansible-playbook && sudo git pull --depth=1 origin master",
-      "cd ansible-playbook/ansible && sudo ansible-playbook  -i 'localhost,' -c local  site.yml   -v",
+      "cd ~/ansible-playbook && sudo git remote add origin https://github.com/mikefaille/play-scala-rest-api-example",
+      "cd ~/ansible-playbook && sudo git config core.sparsecheckout true",
+      "cd ~/ansible-playbook && echo 'ansible/*' | sudo tee .git/info/sparse-checkout",
+      "cd ~/ansible-playbook && sudo git pull --depth=1 origin master",
+      "cd ~/ansible-playbook/ansible && sudo ansible-playbook  -i 'localhost,' -c local  site.yml   -v",
     ]
   }
 
