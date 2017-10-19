@@ -11,7 +11,7 @@ jobs:
     - stage: docker - build test image
       script:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t sbt-example:test .
+      - docker build -t sbt-example:test -f Dockerfile.test .
       - docker run sbt-example:test
     - stage: docker - build release image
       script:
