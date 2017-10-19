@@ -17,4 +17,4 @@ WORKDIR /srv/play-scala-rest-api-example-1.0-SNAPSHOT
 
 EXPOSE 8080
 
-CMD /bin/play-scala-rest-api-example -Dplay.crypto.secret=testing
+CMD bin/play-scala-rest-api-example -Dplay.crypto.secret=testing
