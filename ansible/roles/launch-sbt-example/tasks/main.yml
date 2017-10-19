@@ -4,6 +4,7 @@
     recreate: yes
     image: mikefaille/sbt-example
     state: present
-    pull: always
+    restart_policy: on-failure
+    pull: true
     ports:
     - "8080:9000"
