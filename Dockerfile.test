@@ -1,0 +1,5 @@
+FROM  mikefaille/sbt-builder
+
+COPY ./code /tmp/play-scala-rest-api-example
+CMD cd /tmp/play-scala-rest-api-example && \
+    sbt test
