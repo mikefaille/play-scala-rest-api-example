@@ -156,5 +156,5 @@ resource "aws_instance" "example" {
 
 resource "aws_key_pair" "admin_key" {
   key_name   = "admin_key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEJ2t6J9LXpgxwDjPdk2CP9//kOLh78R/LLY3d+W2Gu0JEzz3BdYGpnuIhJE252kXR3uMslh1++E+i+pkUbXXFupxfuJsh3z1joKTF5vxM5kawLT1BENa8rQylLVPCW/85R+R++QeokzicCILBKJRtlPxS24GpmBPUtLgvyhapAtQp2ZPlk7qKiZsstbuqchUfYjtmndd6c/8tXEYYdboBzQKhj/mXDjpGBCm61aOosAj5wnGWi6qXLqC5dYNb1rGQzIiGxtOMCflqLsATGRUhl3MOyWXN8mSV2EAUhAx3RrfD16efd0jUsxijWzrzONe1MIFiYW1Oprg6418cZ3Px michael@localhost.localdomain"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD0JK1UOINwYMThTaduUs8ePMPI2pKRvjQhxXlZebgvjdmOejQjS46cOII0CPqqJv93zBwlGLhn+6Au+T7wP4Ugzi1/JXBmJATLYHqkV2sjP7No2eO3IHGk13lgFcBLm0fchhqvlMGQnSMaXnU5Uoi7JuCjVQRetWYTf/H+bPJsgTxOcIqSdmd71MS0KmbAeiQeDvxJUZZYfBhY7usSCdHVmwsehQFiem1DmrtBnO/vciRyVa9tAVPIUHYHVpt+8drAwh4sCucdC4f2vuVbyoN1kW+WBuCb8l2BSVrznY0x0lgetADmDaMddCuG9USTli17OrwGgXDx2Jdgq5Z7BjlD root@debian-2gb-tor1-01"
 }
