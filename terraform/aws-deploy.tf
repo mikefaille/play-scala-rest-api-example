@@ -137,7 +137,7 @@ resource "aws_instance" "example" {
       "cd ~/ansible-playbook && sudo git config core.sparsecheckout true",
       "cd ~/ansible-playbook && echo 'ansible/*' | sudo tee .git/info/sparse-checkout",
       "cd ~/ansible-playbook && sudo git pull --depth=1 origin master",
-      "cd ~/ansible-playbook/ansible && sudo ansible-playbook --extra-vars=\"PUBLIC_IP=${aws_instance.swarm-manager.private_ip}\"  -i 'localhost,' -c local  site.yml   -v",
+      "cd ~/ansible-playbook/ansible && sudo ansible-playbook --extra-vars=\"PUBLIC_IP=${aws_instance.example.public_ip}\"  -i 'localhost,' -c local  site.yml   -v",
     ]
   }
 
