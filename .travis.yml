@@ -18,15 +18,47 @@ jobs:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       - docker build -t sbt-example:test -f Dockerfile.test .
       - docker run sbt-example:test
+
     - stage: docker - build release image
       script:
-      - docker build -t sbt-example .
-      - docker tag sbt-example $DOCKER_USERNAME/sbt-example
+      - docker build -t sbt-example
+      - docker tag sbt-example $DOCKER_USERNAME/sbt-example:latest
       - docker images
+      - docker run  $DOCKER_USERNAME/sbt-example:latest
 
-after_success:
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    - stage: docker - publish :latest on docker hub
+      script:
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    fi
-  - docker push $DOCKER_USERNAME/sbt-example
+      fi
+      - docker tag sbt-example $DOCKER_USERNAME/sbt-example:latest
+      - docker push $DOCKER_USERNAME/sbt-example:latest
+
+    - stage: test deployement on aws
+      script:
+      - echo "${SSH_PRIVATE}" > ~/.ssh/id_rsa
+      - chmod 400 ~/.ssh/id_rsa
+      - eval $(ssh-agent)
+      - echo '/usr/bin/bash -c "exec cat"' > dummy_askpass.sh
+      - chmod +x dummy_askpass.sh
+      - echo "${SSH_PWD}" | SSH_ASKPASS='./dummy_askpass.sh' ssh-add
+      - terraform plan --out myplan.tfplan -auto-approve=true
+      - terraform apply myplan.tfplan -auto-approve=true
+      - terraform show
+
+    - stage: docker - publish as :stable on docker hub
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      fi
+      - docker tag sbt-example $DOCKER_USERNAME/sbt-example:stable
+      - docker push $DOCKER_USERNAME/sbt-example:stable
+
+
+# after_success:
+#   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+#       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+#     fi
+#   - docker push $DOCKER_USERNAME/sbt-example:stable
