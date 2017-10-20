@@ -34,6 +34,7 @@ jobs:
     - eval $(ssh-agent) && ssh-add
     - export
     - terraform init
+    - terraform destroy -force
     - terraform plan --out myplan.tfplan
     - terraform apply -auto-approve=true myplan.tfplan
     - terraform show myplan.tfplan
