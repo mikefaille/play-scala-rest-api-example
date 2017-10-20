@@ -31,6 +31,8 @@ jobs:
   - stage: test deployement on aws
     script:
     - cd terraform
+    - eval $(ssh-agent) && ssh-add
+    - export
     - terraform init
     - terraform plan --out myplan.tfplan
     - terraform apply -auto-approve=true myplan.tfplan
