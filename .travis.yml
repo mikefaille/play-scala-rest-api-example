@@ -6,6 +6,7 @@ language: scala
 before_install:
 - openssl aes-256-cbc -K $encrypted_994f1ea3f6dd_key -iv $encrypted_994f1ea3f6dd_iv
   -in id_rsa.enc -out $HOME/.ssh/id_rsa -d
+- chmod 400 $HOME/.ssh/id_rsa
 - sudo apt-get update
 - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 - wget  https://releases.hashicorp.com/terraform/0.10.7/terraform_0.10.7_linux_amd64.zip
