@@ -17,9 +17,10 @@
       - /srv/proxy/certs:/etc/nginx/certs
       - /srv/proxy/acme:/etc/nginx/certs
       - /srv/proxy/conf.d:/etc/nginx/conf.d
-    env:
-      - ENABLE_ACME: true
-      - VIRTUAL_HOST: "{{PUBLIC_IP}}"
+
+- debug:
+    msg: "The public DNS is: {{PUBLIC_DNS }}"
+
 
 - name: docker - launch sbt-example
   docker_container:
@@ -31,3 +32,7 @@
     pull: true
     ports:
     - "8080:9000"
+    env:
+      - ENABLE_ACME: true
+      - VIRTUAL_HOST:
+          - "{{PUBLIC_DNS | default('localhost') }}"
