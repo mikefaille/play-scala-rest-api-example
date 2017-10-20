@@ -41,8 +41,12 @@ jobs:
     - terraform show myplan.tfplan
 
 notifications:
-  email:
-    recipients:
-      - michael@faille.io
+  # email:
+  #   recipients:
+  #     - michael@faille.io
+
+  webhook:
+    urls:
+      - $CHATOPS
     on_success: always # default: change
-    on_failure: always # default: always
+    on_failure: never # default: always
