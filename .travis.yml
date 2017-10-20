@@ -26,12 +26,10 @@ jobs:
       - docker images
       - docker run  $DOCKER_USERNAME/sbt-example:latest
 
-    - stage: docker - publish :latest on docker hub
+    - stage: docker - publish latest on docker hub
       script:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      fi
+      - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
       - docker tag sbt-example $DOCKER_USERNAME/sbt-example:latest
       - docker push $DOCKER_USERNAME/sbt-example:latest
 
@@ -47,11 +45,10 @@ jobs:
       - terraform apply myplan.tfplan -auto-approve=true
       - terraform show
 
-    - stage: docker - publish as :stable on docker hub
+    - stage: docker - publish as stable on docker hub
+      script:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      fi
+      - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
       - docker tag sbt-example $DOCKER_USERNAME/sbt-example:stable
       - docker push $DOCKER_USERNAME/sbt-example:stable
 
