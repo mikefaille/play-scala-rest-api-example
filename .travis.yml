@@ -30,6 +30,8 @@ jobs:
     - docker push $DOCKER_USERNAME/sbt-example:latest
   - stage: test deployement on aws
     script:
-    - cd terraform && terraform plan --out myplan.tfplan
-    - cd terraform && terraform apply -auto-approve=true myplan.tfplan
-    - cd terraform && terraform show myplan.tfplan
+    - cd terraform
+    - terraform init
+    - terraform plan --out myplan.tfplan
+    - terraform apply -auto-approve=true myplan.tfplan
+    - terraform show myplan.tfplan
