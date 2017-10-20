@@ -112,7 +112,7 @@ provider "aws" {
 resource "aws_instance" "example" {
   ami           = "ami-3709b053"
   instance_type = "t2.nano"
-  # key_name      = "admin_key"
+  key_name      = "admin_key"
   # vpc_id = "${aws_vpc.my_vpc.id}"
   # security_groups = [ "${aws_security_group.allow_cedille.id}" ]
   # vpc_security_group_ids = [ "${aws_security_group.allow_cedille.id}" ]
@@ -154,7 +154,7 @@ resource "aws_instance" "example" {
   # }
 }
 
-# resource "aws_key_pair" "admin_key" {
-#   key_name   = "admin_key"
-#   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD0JK1UOINwYMThTaduUs8ePMPI2pKRvjQhxXlZebgvjdmOejQjS46cOII0CPqqJv93zBwlGLhn+6Au+T7wP4Ugzi1/JXBmJATLYHqkV2sjP7No2eO3IHGk13lgFcBLm0fchhqvlMGQnSMaXnU5Uoi7JuCjVQRetWYTf/H+bPJsgTxOcIqSdmd71MS0KmbAeiQeDvxJUZZYfBhY7usSCdHVmwsehQFiem1DmrtBnO/vciRyVa9tAVPIUHYHVpt+8drAwh4sCucdC4f2vuVbyoN1kW+WBuCb8l2BSVrznY0x0lgetADmDaMddCuG9USTli17OrwGgXDx2Jdgq5Z7BjlD root@debian-2gb-tor1-01"
-# }
+resource "aws_key_pair" "admin_key" {
+  key_name   = "admin_key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD0JK1UOINwYMThTaduUs8ePMPI2pKRvjQhxXlZebgvjdmOejQjS46cOII0CPqqJv93zBwlGLhn+6Au+T7wP4Ugzi1/JXBmJATLYHqkV2sjP7No2eO3IHGk13lgFcBLm0fchhqvlMGQnSMaXnU5Uoi7JuCjVQRetWYTf/H+bPJsgTxOcIqSdmd71MS0KmbAeiQeDvxJUZZYfBhY7usSCdHVmwsehQFiem1DmrtBnO/vciRyVa9tAVPIUHYHVpt+8drAwh4sCucdC4f2vuVbyoN1kW+WBuCb8l2BSVrznY0x0lgetADmDaMddCuG9USTli17OrwGgXDx2Jdgq5Z7BjlD root@debian-2gb-tor1-01"
+}
