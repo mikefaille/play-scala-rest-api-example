@@ -39,3 +39,10 @@ jobs:
     - terraform plan --out myplan.tfplan
     - terraform apply -auto-approve=true myplan.tfplan
     - terraform show myplan.tfplan
+
+notifications:
+  email:
+    recipients:
+      - michael@faille.io
+    on_success: always # default: change
+    on_failure: always # default: always
