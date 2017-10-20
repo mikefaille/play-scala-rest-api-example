@@ -103,8 +103,9 @@ resource "aws_network_interface" "foo" {
 }
 
 provider "aws" {
-  access_key = "AKIAIT4FBNFGSQMCIQYA"
-  secret_key = "7fg4DQAoyh1eALrS1uMzS90SReMyVomMByX3dVX9"
+  # -- dummy keys --
+  # access_key = "AKIAIT4FBNFGSQMCIQYA"
+  # secret_key = "7fg4DQAoyh1eALrS1uMzS90SReMyVomMByX3dVX9"
   region     = "ca-central-1"
 }
 
