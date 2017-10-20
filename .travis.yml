@@ -13,21 +13,21 @@ before_install:
   /tmp/terraform.zip
 jobs:
   include:
-  - stage: docker - build test image
-    script:
-    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    - docker build -t sbt-example:test -f Dockerfile.test .
-    - docker run sbt-example:test
-  - stage: docker - build release image
-    script:
-    - docker build -t sbt-example:latest .
-    - docker tag sbt-example $DOCKER_USERNAME/sbt-example:latest
-    - docker images
-    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME"
-      -p="$DOCKER_PASSWORD"; fi
-    - docker tag sbt-example:latest $DOCKER_USERNAME/sbt-example:latest
-    - docker push $DOCKER_USERNAME/sbt-example:latest
+  # - stage: docker - build test image
+  #   script:
+  #   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  #   - docker build -t sbt-example:test -f Dockerfile.test .
+  #   - docker run sbt-example:test
+  # - stage: docker - build release image
+  #   script:
+  #   - docker build -t sbt-example:latest .
+  #   - docker tag sbt-example $DOCKER_USERNAME/sbt-example:latest
+  #   - docker images
+  #   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  #   - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME"
+  #     -p="$DOCKER_PASSWORD"; fi
+  #   - docker tag sbt-example:latest $DOCKER_USERNAME/sbt-example:latest
+  #   - docker push $DOCKER_USERNAME/sbt-example:latest
   - stage: test deployement on aws
     script:
     - cd terraform
