@@ -1,3 +1,26 @@
+# ref: https://github.com/Neilpang/nginx-proxy
+- name: docker - launch nginx-proxy
+  docker_container:
+    name: proxy
+    recreate: yes
+    image: neilpang/nginx-proxy
+    state: started
+    restart_policy: on-failure
+    pull: true
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+    - name: "host"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /srv/proxy/certs:/etc/nginx/certs
+      - /srv/proxy/acme:/etc/nginx/certs
+      - /srv/proxy/conf.d:/etc/nginx/conf.d
+    env:
+      - ENABLE_ACME: true
+      - VIRTUAL_HOST: "{{PUBLIC_IP}}"
+
 - name: docker - launch sbt-example
   docker_container:
     name: sbt-example

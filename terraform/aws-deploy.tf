@@ -137,7 +137,7 @@ resource "aws_instance" "example" {
       "cd ~/ansible-playbook && sudo git config core.sparsecheckout true",
       "cd ~/ansible-playbook && echo 'ansible/*' | sudo tee .git/info/sparse-checkout",
       "cd ~/ansible-playbook && sudo git pull --depth=1 origin master",
-      "cd ~/ansible-playbook/ansible && sudo ansible-playbook  -i 'localhost,' -c local  site.yml   -v",
+      "cd ~/ansible-playbook/ansible && sudo ansible-playbook --extra-vars=\"PUBLIC_IP=${aws_instance.swarm-manager.private_ip}\"  -i 'localhost,' -c local  site.yml   -v",
     ]
   }
 
@@ -157,4 +157,14 @@ resource "aws_instance" "example" {
 resource "aws_key_pair" "admin_key" {
   key_name   = "admin_key"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD0JK1UOINwYMThTaduUs8ePMPI2pKRvjQhxXlZebgvjdmOejQjS46cOII0CPqqJv93zBwlGLhn+6Au+T7wP4Ugzi1/JXBmJATLYHqkV2sjP7No2eO3IHGk13lgFcBLm0fchhqvlMGQnSMaXnU5Uoi7JuCjVQRetWYTf/H+bPJsgTxOcIqSdmd71MS0KmbAeiQeDvxJUZZYfBhY7usSCdHVmwsehQFiem1DmrtBnO/vciRyVa9tAVPIUHYHVpt+8drAwh4sCucdC4f2vuVbyoN1kW+WBuCb8l2BSVrznY0x0lgetADmDaMddCuG9USTli17OrwGgXDx2Jdgq5Z7BjlD root@debian-2gb-tor1-01"
+}
+
+// to print instance ips:
+// https://www.terraform.io/docs/commands/output.html
+output "instance_ips" {
+  value = ["${aws_instance.example.*.public_ip}"]
+}
+
+output "instance_dns" {
+  value = ["${aws_instance.example.*.public_dns}"]
 }
