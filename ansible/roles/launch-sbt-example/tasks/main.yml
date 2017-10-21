@@ -32,6 +32,5 @@
     ports:
     - "8080:9000"
     env:
-      - ENABLE_ACME: true
-      - VIRTUAL_HOST:
-          - "{{PUBLIC_DNS | default('localhost') }}"
+      ENABLE_ACME: true
+      VIRTUAL_HOST: "{{PUBLIC_DNS | default('localhost') }}"
