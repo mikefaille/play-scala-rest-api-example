@@ -15,7 +15,7 @@
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /srv/proxy/certs:/etc/nginx/certs
-      - /srv/proxy/acme:/etc/nginx/certs
+      - /srv/proxy/acme:/etc/nginx/acme
       - /srv/proxy/conf.d:/etc/nginx/conf.d
 
 - debug:
