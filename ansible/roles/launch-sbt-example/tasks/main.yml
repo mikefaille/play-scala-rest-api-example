@@ -10,8 +10,7 @@
     ports:
       - "80:80"
       - "443:443"
-    networks:
-    - name: "host"
+    network_mode: "host"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /srv/proxy/certs:/etc/nginx/certs
